@@ -75,5 +75,5 @@ Zoom_in_1
 Zoom_in_2
 
 ![zoom_in](https://github.com/RodenLuo/BWT-Aligner/blob/master/images/Zoom_in_2.png)
-##BWT-Aligner-in-Perl: For Human genome
+## BWT-Aligner-in-Perl: For Human genome
 Building BWT index for huge genome like human is a little more complicated because of the sorting process. This perl implementation uses 140bp header to sort in lambda virus reference. For human genome 1000bp has been used to sort but there are still some identical sequences. So I have sorted it step by step. I will push this part after I clean up my code.
