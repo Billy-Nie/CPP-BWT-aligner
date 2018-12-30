@@ -68,6 +68,9 @@ bool reverse2 = false;
 bool mreverse = false;
 bool mreverse2 = false;
 
+//****************** FOR SAM CIGAR后面那个*******************
+bool exact_match = true;
+
 
 int main() {
     clock_t start_time, end_time;
@@ -220,8 +223,15 @@ int main() {
                     read_head = read_head.substr(1, read_head.length() - 1);
                 }
                 if(posi[j] > 0 && posi[j] < ref_length) {
-                    output_SAM << read_head << "\t"<< flag(1) <<"\t" << ref_name << "\t" << posi[j] << "\t42\t" << len << "M\t*\t0\t0\t"
-                               << read << "\t" << quality << "\n";
+                    if(exact_match){
+                        output_SAM << read_head << "\t"<< flag(1) <<"\t" << ref_name << "\t" << posi[j] << "\t42\t" << len << "M\t=\t0\t0\t"
+                                   << read << "\t" << quality << "\n";
+
+                    } else {
+                        output_SAM << read_head << "\t"<< flag(1) <<"\t" << ref_name << "\t" << posi[j] << "\t42\t" << len << "M\t*\t0\t0\t"
+                                   << read << "\t" << quality << "\n";
+
+                    }
 
                 }
 
@@ -230,8 +240,14 @@ int main() {
                     if(read_head2.length() > 1) {
                         read_head2 = read_head2.substr(1, read_head2.length() - 1);
                     }
-                    output_SAM << read_head2 << "\t" << flag(2) << "\t" << ref_name << "\t" << posi2[j] << "\t42\t" << len << "M\t*\t0\t0\t"
-                               << read2 << "\t" << quality2 << "\n";
+                    if(exact_match) {
+                        output_SAM << read_head2 << "\t" << flag(2) << "\t" << ref_name << "\t" << posi2[j] << "\t42\t" << len << "M\t=\t0\t0\t"
+                                   << read2 << "\t" << quality2 << "\n";
+                    } else {
+                        output_SAM << read_head2 << "\t" << flag(2) << "\t" << ref_name << "\t" << posi2[j] << "\t42\t" << len << "M\t*\t0\t0\t"
+                                   << read2 << "\t" << quality2 << "\n";
+                    }
+
                 }
             }
         }
@@ -370,6 +386,7 @@ void alignment(string seq, string quality, vector<int>& result, int where_read_i
             return;
         }
 
+        exact_match = false;
         string mut = seq.substr(check_point, 1);
 
         string seq1,seq2,seq3;

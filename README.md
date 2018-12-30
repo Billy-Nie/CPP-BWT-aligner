@@ -3,6 +3,8 @@ This is a C++ implementation of this repository (https://github.com/RodenLuo/BWT
 
 Above that repository, I added a function which reverse the read so that if the read can not be mapped onto the positive chain, we can try to map this read to the reverse chain. Also, I added some naive code to support pair end sequencing.(Or should I say, only pair end sequencing data is allowed in this version?)
 
+The files in my code can be found in the test_files folder under this repository and I have included a pre-build tally index file for the genome. (the tally builder cpp file was a previous work.)
+
 **The rest of this README is basically just a copy from the original repository which can be found here https://github.com/RodenLuo/BWT-Aligner**
 
 **Thanks a lot and all credit should go to RodenLuo**
